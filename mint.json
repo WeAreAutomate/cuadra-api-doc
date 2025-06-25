@@ -4,7 +4,7 @@
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
-  "favicon": "/logo/favicon.png", 
+  "favicon": "/logo/favicon.png",
   "theme": "venus",
   "colors": {
     "primary": "#0D9373",
@@ -21,14 +21,9 @@
     {
       "group": "API Reference",
       "pages": [
+        "api-reference/overview",
         {
-          "group": "API Endpoints",
-          "pages": [
-            "api-reference/overview", 
-            {
-              "openapi": "./docs.json"
-            }
-          ]
+          "openapi": "./docs.json"
         }
       ]
     }
