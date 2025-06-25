@@ -11,7 +11,7 @@
     "light": "#07C983",
     "dark": "#0D9373"
   },
-  "navigation": {
+  "navigation": [{
     "tabs": [
       {
         "tab": "API Reference",
@@ -19,12 +19,12 @@
           {
             "group": "Endpoints",
             "openapi": {
-              "source": "/docs.json",
+              "source": "/open-api.json",
               "directory": "api-reference"
             }
           }
         ]
       }
     ]
-  }
+  }]
 }
