@@ -11,16 +11,20 @@
     "light": "#07C983",
     "dark": "#0D9373"
   },
-  "navigation": [
-    {
-      "group": "Overview",
-      "pages": [
-        "overview"
-      ]
-    },
-    {
-      "group": "API Reference",
-      "openapi": "./docs.json"
-    }
-  ]
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Endpoints",
+            "openapi": {
+              "source": "/docs.json",
+              "directory": "api-reference"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }
