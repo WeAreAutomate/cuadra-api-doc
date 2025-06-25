@@ -20,7 +20,7 @@
     },
     {
       "group": "API Reference",
-      "openapi": "./open-api.json"
+      "api": "./open-api.json"
     }
   ]
 }
