@@ -1,0 +1,20 @@
+{
+  "name": "Cuadra AI",
+  "logo": "/logo/light.svg",
+  "theme": "palm",
+  "api": {
+    "baseUrl": "https://api.cuadra.ai",
+    "sections": [
+      {
+        "name": "API Endpoints",
+        "path": "./docs.json"
+      }
+    ]
+  },
+  "navigation": [
+    {
+      "group": "Overview",
+      "pages": ["overview"]
+    }
+  ]
+}
