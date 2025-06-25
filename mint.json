@@ -1,20 +1,36 @@
 {
   "name": "Cuadra AI",
-  "logo": "/logo/light.svg",
-  "theme": "palm",
-  "api": {
-    "baseUrl": "https://api.cuadra.ai",
-    "sections": [
-      {
-        "name": "API Endpoints",
-        "path": "./docs.json"
-      }
-    ]
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/logo/favicon.png", 
+  "theme": "venus",
+  "colors": {
+    "primary": "#0D9373",
+    "light": "#07C983",
+    "dark": "#0D9373"
   },
   "navigation": [
     {
       "group": "Overview",
-      "pages": ["overview"]
+      "pages": [
+        "overview"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        {
+          "group": "API Endpoints",
+          "pages": [
+            "api-reference/overview", 
+            {
+              "openapi": "./docs.json"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
