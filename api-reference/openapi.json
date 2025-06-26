@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Marina AI Assistant",
-    "description": "API documentation",
-    "version": "v1.0"
+    "title": "Cuadra.AI",
+    "description": "API Documentation",
+    "version": "1.0"
   },
   "servers": [
     {
@@ -11,12 +11,43 @@
       "description": "Generated server url"
     }
   ],
+  "tags": [
+    {
+      "name": "Usage",
+      "description": "Estimate you're request usage, and access to your current usage data."
+    },
+    {
+      "name": "Models"
+    },
+    {
+      "name": "Models",
+      "description": "Create your own custom model, train it and use it!"
+    },
+    {
+      "name": "Embeds"
+    },
+    {
+      "name": "Chat"
+    },
+    {
+      "name": "Chat",
+      "description": "Interact with our different models to get intelligent results"
+    },
+    {
+      "name": "Embeds",
+      "description": "Feed your custom models with relevant information."
+    },
+    {
+      "name": "Usage"
+    }
+  ],
   "paths": {
     "/usage/tokenize": {
       "post": {
         "tags": [
-          "usage-controller"
+          "Usage"
         ],
+        "summary": "Calculate Tokens",
         "operationId": "tokenize",
         "parameters": [
           {
@@ -69,8 +100,9 @@
     "/model": {
       "get": {
         "tags": [
-          "model-controller"
+          "Models"
         ],
+        "summary": "Get Models",
         "operationId": "getModels",
         "parameters": [
           {
@@ -115,8 +147,9 @@
       },
       "post": {
         "tags": [
-          "model-controller"
+          "Models"
         ],
+        "summary": "Create Model",
         "operationId": "createModel",
         "parameters": [
           {
@@ -153,8 +186,9 @@
       },
       "delete": {
         "tags": [
-          "model-controller"
+          "Models"
         ],
+        "summary": "Remove Model",
         "operationId": "removeModel",
         "parameters": [
           {
@@ -193,8 +227,9 @@
     "/embed": {
       "post": {
         "tags": [
-          "embed-controller"
+          "Embeds"
         ],
+        "summary": "New Embed",
         "operationId": "chat",
         "parameters": [
           {
@@ -247,8 +282,9 @@
     "/chat": {
       "post": {
         "tags": [
-          "chat-controller"
+          "Chat"
         ],
+        "summary": "New Chat",
         "operationId": "chat_1",
         "parameters": [
           {
@@ -301,8 +337,9 @@
     "/model/{id}": {
       "get": {
         "tags": [
-          "model-controller"
+          "Models"
         ],
+        "summary": "Get Model",
         "operationId": "getModel",
         "parameters": [
           {
@@ -337,8 +374,9 @@
       },
       "patch": {
         "tags": [
-          "model-controller"
+          "Models"
         ],
+        "summary": "Update Model",
         "operationId": "updateModel",
         "parameters": [
           {
@@ -385,8 +423,9 @@
     "/usage/totals": {
       "get": {
         "tags": [
-          "usage-controller"
+          "Usage"
         ],
+        "summary": "Get Total Usage",
         "operationId": "tokenize_1",
         "parameters": [
           {
