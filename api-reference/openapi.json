@@ -13,7 +13,7 @@
   ],
   "security": [
     {
-      "Supabase Oauth": []
+      "SupabaseOauth": []
     }
   ],
   "tags": [
@@ -569,7 +569,7 @@
       }
     },
     "securitySchemes": {
-      "Supabase Oauth": {
+      "SupabaseOauth": {
         "type": "oauth2",
         "flows": {
           "authorizationCode": {
