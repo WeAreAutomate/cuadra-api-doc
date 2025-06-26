@@ -49,16 +49,6 @@
         ],
         "summary": "Calculate Tokens",
         "operationId": "tokenize",
-        "parameters": [
-          {
-            "name": "X-CLIENT-ID",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -122,14 +112,6 @@
               "type": "integer",
               "format": "int32"
             }
-          },
-          {
-            "name": "X-CLIENT-ID",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -151,16 +133,6 @@
         ],
         "summary": "Create Model",
         "operationId": "createModel",
-        "parameters": [
-          {
-            "name": "X-CLIENT-ID",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -190,16 +162,6 @@
         ],
         "summary": "Remove Model",
         "operationId": "removeModel",
-        "parameters": [
-          {
-            "name": "X-CLIENT-ID",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -231,16 +193,6 @@
         ],
         "summary": "New Embed",
         "operationId": "chat",
-        "parameters": [
-          {
-            "name": "X-CLIENT-ID",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -286,16 +238,6 @@
         ],
         "summary": "New Chat",
         "operationId": "chat_1",
-        "parameters": [
-          {
-            "name": "X-CLIENT-ID",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -349,14 +291,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "X-CLIENT-ID",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -382,14 +316,6 @@
           {
             "name": "id",
             "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-CLIENT-ID",
-            "in": "header",
             "required": true,
             "schema": {
               "type": "string"
@@ -427,16 +353,6 @@
         ],
         "summary": "Get Total Usage",
         "operationId": "tokenize_1",
-        "parameters": [
-          {
-            "name": "X-CLIENT-ID",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -643,6 +559,19 @@
             "items": {
               "$ref": "#/components/schemas/ModelEx"
             }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Supabase OAuth2": {
+        "type": "oauth2",
+        "in": "header",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://dguxglyyavnhlugtecgi.supabase.co/auth/v1/authorize",
+            "tokenUrl": "https://dguxglyyavnhlugtecgi.supabase.co/auth/v1/token",
+            "scopes": {}
           }
         }
       }
