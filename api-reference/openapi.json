@@ -1,0 +1,612 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Marina AI Assistant",
+    "description": "API documentation",
+    "version": "v1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9090",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/usage/tokenize": {
+      "post": {
+        "tags": [
+          "usage-controller"
+        ],
+        "operationId": "tokenize",
+        "parameters": [
+          {
+            "name": "X-CLIENT-ID",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "payload"
+                ],
+                "type": "object",
+                "properties": {
+                  "payload": {
+                    "$ref": "#/components/schemas/Chat"
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageCalculationEx"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/model": {
+      "get": {
+        "tags": [
+          "model-controller"
+        ],
+        "operationId": "getModels",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-CLIENT-ID",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedResponseExListModelEx"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "model-controller"
+        ],
+        "operationId": "createModel",
+        "parameters": [
+          {
+            "name": "X-CLIENT-ID",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelEx"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelEx"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "model-controller"
+        ],
+        "operationId": "removeModel",
+        "parameters": [
+          {
+            "name": "X-CLIENT-ID",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelEx"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelEx"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/embed": {
+      "post": {
+        "tags": [
+          "embed-controller"
+        ],
+        "operationId": "chat",
+        "parameters": [
+          {
+            "name": "X-CLIENT-ID",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "payload"
+                ],
+                "type": "object",
+                "properties": {
+                  "payload": {
+                    "$ref": "#/components/schemas/Embed"
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmbedResponseEx"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat": {
+      "post": {
+        "tags": [
+          "chat-controller"
+        ],
+        "operationId": "chat_1",
+        "parameters": [
+          {
+            "name": "X-CLIENT-ID",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "payload"
+                ],
+                "type": "object",
+                "properties": {
+                  "payload": {
+                    "$ref": "#/components/schemas/Chat"
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatResponseEx"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/model/{id}": {
+      "get": {
+        "tags": [
+          "model-controller"
+        ],
+        "operationId": "getModel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CLIENT-ID",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelEx"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "model-controller"
+        ],
+        "operationId": "updateModel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CLIENT-ID",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelEx"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelEx"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/totals": {
+      "get": {
+        "tags": [
+          "usage-controller"
+        ],
+        "operationId": "tokenize_1",
+        "parameters": [
+          {
+            "name": "X-CLIENT-ID",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TotalUsageEx"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Chat": {
+        "required": [
+          "content",
+          "model"
+        ],
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentEx"
+            }
+          },
+          "chatId": {
+            "type": "string"
+          }
+        }
+      },
+      "ContentEx": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "string"
+          },
+          "inputReference": {
+            "type": "string"
+          },
+          "type": {
+            "pattern": "text|audio|doc|image|video",
+            "type": "string"
+          }
+        }
+      },
+      "UsageCalculationEx": {
+        "type": "object",
+        "properties": {
+          "estimatedTokens": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ModelEx": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "clientId": {
+            "type": "string"
+          },
+          "proprietary": {
+            "type": "boolean"
+          },
+          "baseModel": {
+            "type": "string"
+          },
+          "baseModelId": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Embed": {
+        "required": [
+          "content",
+          "model",
+          "purpose"
+        ],
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentEx"
+            }
+          },
+          "purpose": {
+            "pattern": "search_document|search_query|classification|clustering",
+            "type": "string"
+          }
+        }
+      },
+      "EmbedResponseEx": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/UsageEx"
+          }
+        }
+      },
+      "TokensEx": {
+        "type": "object",
+        "properties": {
+          "inputTokens": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "outputTokens": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "UsageEx": {
+        "type": "object",
+        "properties": {
+          "billedTokens": {
+            "$ref": "#/components/schemas/TokensEx"
+          },
+          "usedTokens": {
+            "$ref": "#/components/schemas/TokensEx"
+          }
+        }
+      },
+      "ChatResponseEx": {
+        "type": "object",
+        "properties": {
+          "output": {
+            "type": "string"
+          },
+          "confidenceScore": {
+            "type": "number"
+          },
+          "model": {
+            "type": "string"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/UsageEx"
+          }
+        }
+      },
+      "TotalUsageEx": {
+        "type": "object",
+        "properties": {
+          "totalInput": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalOutput": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PaginatedResponseExListModelEx": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModelEx"
+            }
+          }
+        }
+      }
+    }
+  }
+}
