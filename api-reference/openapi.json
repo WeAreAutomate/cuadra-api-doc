@@ -11,6 +11,11 @@
       "description": "Generated server url"
     }
   ],
+  "security": [
+    {
+      "Supabase Oauth": []
+    }
+  ],
   "tags": [
     {
       "name": "Usage",
@@ -564,9 +569,8 @@
       }
     },
     "securitySchemes": {
-      "Supabase OAuth2": {
+      "Supabase Oauth": {
         "type": "oauth2",
-        "in": "header",
         "flows": {
           "authorizationCode": {
             "authorizationUrl": "https://dguxglyyavnhlugtecgi.supabase.co/auth/v1/authorize",
