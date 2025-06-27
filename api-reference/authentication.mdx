@@ -1,0 +1,58 @@
+---
+title: 'Authentication'
+description: 'To securely access the API, you must authenticate your requests. We use the industry-standard OAuth 2.0 protocol, managed via Supabase, to issue access tokens. This guide will show you how to get your credentials and start making authenticated calls.'
+---
+
+<Note>
+  If you don't have credentials yet, get in contact with our team to start building your AI solutions today.
+</Note>
+
+## Authentication
+
+All API endpoints are authenticated using Bearer tokens created by Supabase to handle authentication.
+
+### Log In to Get a Token
+
+The easiest way to get an access_token is to log in with a user's email and password via the Supabase Auth endpoint.
+You can do this by making a POST request. Here is a cURL example that you can run in your terminal. Replace the placeholder values with your anon key and the user's credentials.
+
+```
+curl --request POST \
+  --url 'https://dguxglyyavnhlugtecgi.supabase.co/auth/v1/token?grant_type=password' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "email": "USER_EMAIL@example.com",
+    "password": "USER_PASSWORD"
+  }'
+```
+
+### Copy Your access_token
+
+If the login is successful, Supabase will return a JSON object containing your access_token. It will look like this:
+
+```json
+{
+  "access_token": "eyJhbGciOiJIU..._YOUR_TOKEN_HERE_...w9Q",
+  "token_type": "bearer",
+  "expires_in": 3600,
+  "refresh_token": "Abc123_YOUR_REFRESH_TOKEN_HERE_",
+  "user": {
+    "id": "cfae92b3-a219-4c12-a84f-b27e1ea2a628",
+    "aud": "authenticated",
+    "role": "authenticated"
+  }
+}
+```
+
+### Make Authenticated API Requests
+
+You are now ready to make secure calls to our API!
+To do this, include the access_token in the Authorization header of your requests as a Bearer token.
+Here is an example of how to call a hypothetical API endpoint:
+
+```
+curl --request GET \
+  --url 'https://api.cuadra.ai/model' \
+  --header 'Authorization: Bearer YOUR_ACCESS_TOKEN'
+```
+
