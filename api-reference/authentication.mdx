@@ -44,6 +44,8 @@ If the login is successful, Supabase will return a JSON object containing your a
 }
 ```
 
+Copy the access_token to make API calls and securely store the refresh_token. You will need it later.
+
 ### Make Authenticated API Requests
 
 You are now ready to make secure calls to our API!
@@ -56,3 +58,19 @@ curl --request GET \
   --header 'Authorization: Bearer YOUR_ACCESS_TOKEN'
 ```
 
+<Note>
+    Your access_token expires after one hour (expires_in: 3600). When it expires, you can use the refresh_token to get a new one without requiring the user to log in again.
+</Note>
+
+### Request a New Token
+
+Make a POST request to the token endpoint, this time using refresh_token as the grant_type and passing the refresh_token you saved earlier.
+
+```
+curl --request POST \
+  --url 'https://dguxglyyavnhlugtecgi.supabase.co/auth/v1/token?grant_type=refresh_token' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "refresh_token": "THE_REFRESH_TOKEN_YOU_SAVED"
+  }'
+```
