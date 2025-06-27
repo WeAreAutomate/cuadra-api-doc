@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Cuadra AI",
+    "title": "Cuadra.AI",
     "description": "API Documentation",
     "version": "1.0"
   },
   "servers": [
     {
-      "url": "http://localhost:9090",
-      "description": "Generated server url"
+      "url": "https://api.cuadra.ai",
+      "description": "Production Server"
     }
   ],
   "security": [
@@ -377,22 +377,29 @@
     "schemas": {
       "Chat": {
         "required": [
+          "chatId",
           "content",
           "model"
         ],
         "type": "object",
         "properties": {
           "model": {
-            "type": "string"
+            "maxLength": 50,
+            "type": "string",
+            "description": "Model name",
+            "example": "ive.legal.1.1.0"
           },
           "content": {
             "type": "array",
+            "description": "Request content",
             "items": {
               "$ref": "#/components/schemas/ContentEx"
             }
           },
           "chatId": {
-            "type": "string"
+            "type": "string",
+            "description": "If you want to keep context between request, otherwise leave it empty, you get one with every chat you create.",
+            "example": "a9d375c5-5a3e-48a0-9102-95eac0ece2e9"
           }
         }
       },
@@ -403,59 +410,85 @@
         "type": "object",
         "properties": {
           "input": {
-            "type": "string"
+            "type": "string",
+            "description": "Input is the task you want the AI to solve, only required when the type is a text.",
+            "example": "Guide me on creating a legal document for x."
           },
           "inputReference": {
-            "type": "string"
+            "type": "string",
+            "description": "Input Reference is the name of the file, if you're request is from a type other than text, and it's required for most types. It has to contain the same name as the file attached in the request.",
+            "example": "legal-regulations.pdf"
           },
           "type": {
             "pattern": "text|audio|doc|image|video",
-            "type": "string"
+            "type": "string",
+            "description": "Content type has to be either 'text', 'audio', 'doc', 'image', o 'video'.",
+            "example": "text"
           }
-        }
+        },
+        "description": "Request content"
       },
       "UsageCalculationEx": {
         "type": "object",
         "properties": {
           "estimatedTokens": {
             "type": "integer",
-            "format": "int32"
+            "description": "Estimated tokens for your request",
+            "format": "int32",
+            "example": 482
           }
         }
       },
       "ModelEx": {
+        "required": [
+          "description",
+          "name",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Model Id",
+            "example": "72dfb4f5-27dc-40e2-9278-b0de30e8b131"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Model name",
+            "example": "ive.legal.1.1.0"
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "description": "Model type of content generation and processing",
+            "example": "multimedia"
           },
           "description": {
-            "type": "string"
-          },
-          "clientId": {
-            "type": "string"
+            "type": "string",
+            "description": "Brief description of the model",
+            "example": "Oura-Legal is our next-generation AI model designed for powerful, intelligent, and adaptable legal purposes."
           },
           "proprietary": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether is a custom model created by you or not",
+            "example": false
           },
           "baseModel": {
-            "type": "string"
+            "type": "string",
+            "description": "Base model name, if it was created from another model",
+            "example": "ive.legal.1.1.0"
           },
           "baseModelId": {
-            "type": "string"
+            "type": "string",
+            "description": "Base model id, if it was created from another model"
           },
           "createdAt": {
             "type": "string",
+            "description": "Creation date",
             "format": "date-time"
           },
           "updatedAt": {
             "type": "string",
+            "description": "Last time it was updated",
             "format": "date-time"
           }
         }
@@ -469,17 +502,24 @@
         "type": "object",
         "properties": {
           "model": {
-            "type": "string"
+            "maxLength": 50,
+            "type": "string",
+            "description": "Model name",
+            "example": "ive.legal.1.1.0"
           },
           "content": {
             "type": "array",
+            "description": "Request content",
             "items": {
               "$ref": "#/components/schemas/ContentEx"
             }
           },
           "purpose": {
+            "maxLength": 50,
             "pattern": "search_document|search_query|classification|clustering",
-            "type": "string"
+            "type": "string",
+            "description": "The purpose of the embed, it could be 'search_document', 'search_query', 'classification', o 'clustering'.",
+            "example": "classification"
           }
         }
       },
@@ -487,7 +527,9 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Embed id",
+            "example": "bd39e814-159d-4024-8e83-14025070ef77"
           },
           "usage": {
             "$ref": "#/components/schemas/UsageEx"
@@ -499,13 +541,18 @@
         "properties": {
           "inputTokens": {
             "type": "integer",
-            "format": "int32"
+            "description": "Number of tokens of the request input",
+            "format": "int32",
+            "example": 320
           },
           "outputTokens": {
             "type": "integer",
-            "format": "int32"
+            "description": "Number of tokens of the response output",
+            "format": "int32",
+            "example": 490
           }
-        }
+        },
+        "description": "Tokens used"
       },
       "UsageEx": {
         "type": "object",
@@ -516,19 +563,26 @@
           "usedTokens": {
             "$ref": "#/components/schemas/TokensEx"
           }
-        }
+        },
+        "description": "This is the token usage result of your request"
       },
       "ChatResponseEx": {
         "type": "object",
         "properties": {
           "output": {
-            "type": "string"
+            "type": "string",
+            "description": "Output generated by the AI to resolve the request",
+            "example": "Here is a guide on creating a legal document for x..."
           },
           "confidenceScore": {
-            "type": "number"
+            "type": "number",
+            "description": "Confidence score of how accurate is the output regarding your request",
+            "example": 0.987
           },
           "model": {
-            "type": "string"
+            "type": "string",
+            "description": "Model used to resolve your query",
+            "example": "ive.legal.1.1.0"
           },
           "usage": {
             "$ref": "#/components/schemas/UsageEx"
@@ -540,11 +594,15 @@
         "properties": {
           "totalInput": {
             "type": "integer",
-            "format": "int32"
+            "description": "Total Input Tokens used for this month",
+            "format": "int32",
+            "example": 12492
           },
           "totalOutput": {
             "type": "integer",
-            "format": "int32"
+            "description": "Total Ouput Tokens used for this month",
+            "format": "int32",
+            "example": 24381
           }
         }
       },
